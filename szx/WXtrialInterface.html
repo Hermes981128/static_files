@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="x5-orientation" content="portrait" />
+	<meta name="screen-orientation" content="portrait" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<!-- 删除苹果默认的工具栏和菜单栏 -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<!-- 设置苹果工具栏颜? -->
+	<meta name="format-detection" content="telphone=no, email=no">
+	<!-- 忽略页面中的数字识别为电话，忽略email识别 -->
+	<!-- 启用360浏览器的极速模?(webkit) -->
+	<meta name="renderer" content="webkit">
+	<!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑? -->
+	<meta name="HandheldFriendly" content="true">
+	<!-- 微软的老式浏览? -->
+	<meta name="MobileOptimized" content="320">
+	<!-- 不能旋转，问题出在这 -->
+	<!-- UC强制全屏 -->
+	<meta name="full-screen" content="yes">
+	<!-- QQ强制全屏 -->
+	<meta name="x5-fullscreen" content="true">
+	<!-- UC应用模式 -->
+	<meta name="browsermode" content="application">
+	<!-- QQ应用模式 -->
+	<meta name="x5-page-mode" content="app">
+	<!-- windows phone 点击无高? -->
+	<meta name="msapplication-tap-highlight" content="no">
+	<link rel="stylesheet" type="text/css" href="css/WXtrialInterface.css" />
+	<link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.3/style/weui.min.css" />
+	<link rel="stylesheet" href="https://cdn.bootcss.com/jquery-weui/1.2.1/css/jquery-weui.min.css" />
+</head>
+
+<body class="scroll h-player" style="overscroll-behavior: contain;">
+	<div class="container" id="player">
+		<div class="muted" id="btnMuted">
+			<div class="control-right-img" data-id="1">
+				<img src="../static/img/xuanfu_icon.png">
+			</div>
+		</div>
+		<div id="wine">
+			<video id="playerVideo" muted="muted" x5-video-orientation="landscape" playsinline="true" autoplay="true"
+				webkit-playsinline="true" x5-playsinline="true" x5-video-player-type="h5" x5-video-player-fullscreen="false"
+				style="pointer-events: none;object-fit: fill;width: 100%;height:100%"></video>
+			<div id="box"></div>
+			<audio preload="auto" autoplay controls poster="images/loader-thumb.jpg" id="audioPlayer"
+				style="position: absolute;top: 0;width: 0;height: 0;"></audio>
+		</div>
+		<div class="leftmains">
+			<div class="PictureQualityMain">
+				<div class="PictureQuality " data-id="1803000">高清</div>
+				<div class="PictureQuality avit" data-id="1243000">标清</div>
+				<div class="PictureQuality" data-id="400000">极速</div>
+				<div class="PictureQuality" data-id="200">自动</div>
+			</div>
+			<div class="operation">
+				<div class="upload" id="showsuss" data-text="uploads">
+					<img src="../static/img/wx/shangchuan_icon.png">
+					<div>上传</div>
+				</div>
+				<div class="upload" onclick="showShearPlate()" data-text="Shearplate">
+					<img src="../static/img/wx/jianqieban_icon.png">
+					<div>剪贴板</div>
+				</div>
+				<div class="upload" id="upload" data-text="Signout">
+					<img src="../static/img/wx/tuichu_icon.png">
+					<div>退出</div>
+				</div>
+			</div>
+		</div>
+		<div class="bottommains">
+			<div class="botmat1">
+				<div class="botmat1img" data-text="gengduo">
+					<img src="../static/img/wx/gengduo_icon.png">
+				</div>
+			</div>
+			<div class="botmat1">
+				<div class="botmat1img" data-text="home">
+					<img src="../static/img/wx/home_icon.png">
+				</div>
+			</div>
+			<div class="botmat1">
+				<div class="botmat1img" data-text="return">
+					<img src="../static/img/wx/fanhui_icon.png">
+				</div>
+			</div>
+		</div>
+		<div class="loading"></div>
+	</div>
+	<div class="mask">
+		<div class="box-shear-plate"></div>
+		<img class="close" onclick="handleClose()" src="img/guanbi_icon@2x.png" alt="">
+	</div>
+	<div class="weui-mask_transparent"></div>
+	<div class="weui-toast weui_loading_toast weui-toast--visible">
+		<div class="weui_loading"><i class="weui-loading weui-icon_toast"></i></div>
+		<p class="weui-toast_content">数据加载中</p>
+	</div>
+
+	<body oncontextmenu="Back()">
+	</body>
+	<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.3.2.js"></script>
+	<script type="text/javascript" src="../static/js/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript" src="helper.js"></script>
+	<script type="text/javascript" src="pcm-player.js"></script>
+	<script type="text/javascript" src="https://cdn.bootcss.com/vConsole/3.2.0/vconsole.min.js"></script>
+	<script src="https://cdn.bootcss.com/jquery-weui/1.2.1/js/jquery-weui.min.js"></script>
+	<script type="text/javascript" src="WXdraw.js?v=110"></script>
+	<script type="text/javascript" src="jmuxer.js"></script>
+	<script>
+		var isAudioPlay = false;
+		$.alert({
+			title: '提示',
+			text: '开始使用云手机',
+			onOK: function () {
+				var video = document.getElementById("playerVideo");
+				video.play();
+				isAudioPlay = true;
+			}
+		});
+		var topwinHeight = window.screen.height - window.innerHeight + 30; //计算title top 头部  
+		$('#wine').css({
+			"width": window.screen.width,
+			"height": window.screen.height - topwinHeight - 20,
+			"position": "absolute"
+		});
+		$('.loading').css({
+			"width": window.screen.width,
+			"height": window.screen.height - topwinHeight - 20
+		});
+		var winese = document.createElement("wine");
+		wine.style.top = "-" + winese + 'px';
+
+		var requestCount = 0;
+		var isVisuable = true;
+		var isFeed = true;
+		var isDrag = false;
+		var isEnough = true;
+		var isFinish = false;
+
+		var delayTime = new Date().getTime();
+		var curTime = new Date().getTime();
+		var myVideo = document.getElementById("playerVideo");
+		Module = {};
+		Module.onRuntimeInitialized = function () {
+			isFinish = true;
+		}
+
+		var isWSS = true;
+		var parameters = GetRequest();
+		var ip = parameters["ip"];
+		var appletPushAddress = parameters["appletPushAddress"];
+		var socketURL = isWSS ? "wss://" + appletPushAddress + "?cardIp=" + ip : "ws://" + appletPushAddress + "?cardIp=" + ip;
+		// var socketURL = "ws://14.215.128.96:2004";
+
+		var jmuxer = new JMuxer({
+			node: 'playerVideo',
+			flushingTime: 15,
+			fps: 30,
+			mode: 'video',
+			debug: false
+		});
+
+		window.onload = function () {
+			curTime = new Date().getTime();
+
+			var myPlay = document.getElementById("wine");
+
+			myPlay.onkeydown = function (event) {
+				ExexuteKeyDown(e.keyCode);
+			}
+		}
+		var ws, errorTime = 0;
+		doConnect();
+		// 节流
+		// 设置一个标志
+		function throttle(fn, delay) {
+			let flag = true;
+			errorTime += delay;
+			return () => {
+				if (!flag) return;
+				flag = false;
+				timer = setTimeout(() => {
+					fn();
+					flag = true;
+				}, delay);
+			};
+		}
+		function doConnect() {
+			ws = new WebSocket(socketURL);
+			ws.binaryType = 'arraybuffer';
+
+			ws.onclose = function (e) {
+				ws.close();
+				throttle(doConnect, 100);
+				if (errorTime > 1000) {
+					wx.miniProgram.switchTab({
+						url: '/pages/home/home'
+					})
+				}
+			}
+
+			ws.addEventListener('open', function (event) {
+				ws.send(ConfigChannel("RK3923C1201900139"));
+				var checkBuffer = GetScreenState();
+				ws.send(checkBuffer);
+			});
+
+			ws.addEventListener('error', function (event) {
+				ws.close();
+				throttle(doConnect, 100);
+				if (errorTime > 1000) {
+					wx.miniProgram.switchTab({
+						url: '/pages/home/home'
+					})
+				}
+			});
+			ws.addEventListener('message', function (event) {
+				var data = ParseProto(event.data); //JAVA服务器转发
+				ws.send('ping');
+				if (isAudioPlay) {
+					$('.weui-mask_transparent').hide();
+					$('.weui-toast').hide();
+					$('.loading').hide();
+				}
+				var input = new Uint8Array(event.data);
+				if (data.audio != null && isAudioPlay) { //喂音频
+					if (input[0] == 0xff) {
+						if (isFinish) {
+							decodeAAC(input);
+						}
+					}
+				}
+
+				if (data.video != null) { //喂视频
+					if (isFeed) {
+						jmuxer.feed(data);
+					}
+				}
+			});
+		}
+
+		document.addEventListener("visibilitychange", function () {
+			if (document.visibilityState == "visible") {
+				var buffer = RequestIFrame();
+				ws.send(buffer);
+				isVisuable = true;
+			} else {
+				isVisuable = false;
+				isFeed = false;
+				myVideo.pause();
+			}
+		});
+
+		myVideo.addEventListener('pause', function () {
+			isFeed = false;
+		});
+
+		var decodeCount = 1;
+		var player = new PCMPlayer({
+			encoding: '16bitInt',
+			channels: 2,
+			sampleRate: 44100,
+			flushingTime: 22,
+			debug: false
+		});
+
+		function handleClose() {
+			document.body.addEventListener('touchmove', function (e) {
+				e.preventDefault()
+			}, {
+				passive: false
+			})
+			$('.mask').hide();
+		}
+
+		function decodeAAC(data) {
+			var retPtr = Module._malloc(4 * 5 * 1024); // 接收的数据
+			var inputPtr = Module._malloc(4 * data.length); // 输入数据
+
+			for (var i = 0; i < data.length; i++) {
+				Module.HEAPU8[(inputPtr) + i] = data[i]; //转换为堆数据
+			}
+
+			var pcmLen = Module._feedData(retPtr, inputPtr, data.length);
+
+			if (pcmLen >= 0) {
+				var pcmData = new Uint8Array(pcmLen);
+				for (var i = 0; i < pcmLen; i++) {
+					pcmData[i] = Module.HEAPU8[(retPtr) + i]
+				}
+
+				player.feed(pcmData);
+			}
+
+			decodeCount++;
+			Module._free(inputPtr);
+			Module._free(retPtr);
+		}
+
+		//解协议
+		function ParseProto(data) {
+			var input = new Uint8Array(data),
+				duration,
+				video,
+				audio;
+			if (input[0] == 0 && input[1] == 0 && input[2] == 0 && input[3] == 1) {
+				video = input;
+				duration = 24;
+				var nalType = input[4] & 0x1f;
+
+				if (!isFeed) {
+					if (nalType == 0x05 && isVisuable) {
+						isFeed = true;
+					}
+				}
+			} else if (input[0] == 0xff) {
+				if (!isEnough) {
+					requestCount++;
+				}
+				audio = input;
+
+				if (new Date().getTime() - curTime > 100) {
+					delayTime = new Date().getTime();
+				}
+				curTime = new Date().getTime();
+				duration = 24;
+			} else if (input[0] == 0x68) {
+				if (input[23] == 0x05) { //横竖屏标识
+					var state = CheckScreenDirection(input.slice(24, 24 + 8));
+
+					if (state == 1) {
+						console.log("安卓卡此时竖屏");
+						//竖屏处理
+						resolving = 1;
+					} else {
+						console.log("安卓卡此时横屏");
+						//横屏处理
+						resolving = 0;
+					}
+				}
+				if (input[23] == 0x0b) {
+					console.log("多端登陆");
+				}
+			}
+
+			return {
+				audio: audio,
+				video: video,
+				duration: duration
+			};
+		}
+
+		function GetRequest() {
+			var url = location.search; // 获取url中"?"符后的字串
+			var obj = new Object();
+			if (url.indexOf("?") != -1) {
+				var str = url.substr(1);
+				strs = str.split("&");
+				for (var i = 0; i < strs.length; i++) {
+					obj[strs[i].split("=")[0]] = (strs[i].split("=")[1]);
+				}
+			}
+			return obj;
+		}
+
+		function Back() {
+			ExexuteKeyDown(4);
+			window.event.returnValue = false;
+			return false;
+		}
+
+		var url = window.location.href;
+		url = url.split('/');
+		var baseUrl = url[0] + '//' + url[2];
+		// var baseUrl = 'http://per.cs.se.androidscloud.com';
+		var form = {};
+		$.ajax({
+			url: baseUrl + "/api/user/v1/config/download/isShow",
+			data: {},
+			type: 'get',
+			dataType: 'json',
+			success: function (data) {
+				if (data.data) {
+					$("#showsuss").show()
+				} else {
+					$("#showsuss").hide()
+				}
+			}
+		})
+
+		form.clientType = parameters['clientType'];
+		form.diskName = parameters['diskName'];
+		form.id = parameters['id'];
+		form.userCardId = parameters['userCardId'];
+
+		if (form.clientType == 1) {
+			form.cardIp = parameters['cardIp'];
+			form.port = parameters['port'];
+			form.sn = parameters['sn'];
+			form.demoTime = parameters['demoTime'];
+			form.id = parameters['id'];
+		} else if (form.clientType == 2) { //分享屏幕
+			$(".leftmains").css({
+				"right": "-4rem"
+			})
+			$('.leftmains').hide()
+			$('.bottommains').hide()
+			$('#btnMuted').hide()
+
+			form.id = parameters['id'];
+			form.ip = parameters['ip'];
+			form.userCardId = parameters['userCardId'];
+		}
+		function array_unique(arr) {
+			return arr.filter(function (e, i) {
+				return arr.indexOf(e) === i;
+			})
+		}
+		var cutList = [];
+		function showShearPlate() {
+			$('.box-shear-plate').empty();
+			$.ajax({
+				url: baseUrl + "/api/user/v1/shear/content",
+				data: {},
+				headers: {
+					'Authorization': form.id  //id
+				},
+				type: 'get',
+				dataType: 'json',
+				success: function (res) {
+					if (res.status === 0) {
+						if (res.data.length) {
+							cutList = array_unique(res.data)
+							var str = '<div class="title">剪贴板<div onclick="handleClear()" class="btn-clear">清空</div></div><div class="slide-wrapper-content">'
+							cutList.forEach(function (item) {
+								str += "<div class='slide-wrapper'><div class='slide-scroll animate-slide-start'><div class='slide-content'><div onclick='handleCopy(\"" + item.content + "\")'>" + item.content + "</div></div><div class='slide-content-button'><button onclick='handleDelete(" + item.id + ")'>删除</button></div></div></div>"
+							})
+							str += '</div>'
+							$('.box-shear-plate').append(str);
+						} else {
+							$('.box-shear-plate').append('<img class="empty" src="img/jianqieban_pic@2x.png" alt="" /><div class="empty-txt">剪贴板为空</div>')
+
+						}
+						$('.mask').show();
+						initSlider();
+					} else {
+						$('.box-shear-plate').append('<img class="empty" src="img/jianqieban_pic@2x.png" alt="" /><div class="empty-txt">剪贴板为空</div>')
+						$('.mask').show();
+					}
+				}
+			})
+		}
+		// 清空剪贴板
+		function handleClear() {
+			var ids = '';
+			cutList.forEach(function (item) {
+				ids += 'ids=' + item.id + '&'
+			});
+			ids = ids.substring(0, ids.lastIndexOf('&'));
+			$.confirm("确定清空剪贴板？", function () {
+				$.ajax({
+					url: baseUrl + "/api/user/v1/shear/content?" + ids,
+					headers: {
+						'Authorization': form.id  //id
+					},
+					type: 'DELETE',
+					dataType: 'json',
+					success: function (res) {
+						if (res.status === 0) {
+							showShearPlate();
+						} else {
+							$.toast(res.msg, "text");
+						}
+					}
+				})
+			});
+		}
+		function handleCopy(content) {
+			$.ajax({
+				url: baseUrl + "/api/wsi/v1/config/cut",
+				data: JSON.stringify({
+					str: content,
+					userCardId: form.userCardId
+				}),
+				headers: {
+					'Authorization': form.id  //id
+				},
+				contentType: "application/json;charset=UTF-8",
+				type: 'post',
+				dataType: 'json',
+				success: function (res) {
+					if (res.status === 0) {
+						$.toast('复制成功', "text");
+					} else {
+						$.toast(res.msg, "text");
+					}
+				}
+			})
+		}
+		// 删除剪贴板
+		function handleDelete(id) {
+			$.ajax({
+				url: baseUrl + "/api/user/v1/shear/content?ids=" + id,
+				headers: {
+					'Authorization': form.id  //id
+				},
+				type: 'DELETE',
+				dataType: 'json',
+				success: function (res) {
+					if (res.status === 0) {
+						showShearPlate();
+					} else {
+						$.toast(res.msg, "text");
+					}
+				}
+			})
+		}
+		function initSlider() {
+			//手指滑动多少距离就认为是滑成功
+			//这个值不能太大，否则影响斜着滑动时，垂直滑动的流畅性，也不能太小，太灵敏也不好
+			var diffXDistance = 50;
+			//当前滑动的对象
+			var currentObject;
+			//上一次滑动的对象
+			var lastObject;
+			//是否可以左右滑动，在上下滑的时候禁止左右滑
+			var canSlide = true;
+			//用于记录按下的点
+			var startPoint;
+
+			$(".slide-content").css({
+				width: $(".slide-wrapper").width()
+			});
+			document.body.removeEventListener('touchmove', function (e) {
+				e.preventDefault()
+			}, {
+				passive: false
+			})
+			$(".slide-scroll").css({
+				width: $(".slide-wrapper").width() + $(".slide-content-button").width()
+			})
+				.on('touchstart', function (e) {
+					currentObject = this;
+
+					startPoint = {
+						x: e.originalEvent.changedTouches[0].pageX,
+						y: e.originalEvent.changedTouches[0].pageY
+					};
+				})
+				.on('touchmove', function (e) {
+					//如果是左右滑动，就禁止上下的滑动
+					//如果是上下的滑动，就禁止左右滑动
+					if (Math.abs(e.originalEvent.changedTouches[0].pageX - startPoint.x) > Math.abs(e.originalEvent.changedTouches[0].pageY - startPoint.y)) {
+						event.preventDefault();
+					} else {
+						canSlide = false;
+					}
+				})
+				.on('touchend', function (e) {
+					//如果是上下滑动，这里就直接返回了
+					if (!canSlide) {
+						canSlide = true;
+						return true;
+					}
+
+					//点击除当前左滑对象之外的任意其他位置
+					if (lastObject && currentObject != lastObject) {
+						//右滑→
+						$(lastObject).removeClass("animate-slide");
+
+						//清空上一个左滑的对象
+						lastObject = undefined;
+					}
+					var diffX = e.originalEvent.changedTouches[0].pageX - startPoint.x;
+					if (diffX < -diffXDistance) {
+						//左滑←
+						$(currentObject).addClass("animate-slide");
+						if (lastObject && lastObject != currentObject) {
+							//右滑→
+							$(lastObject).removeClass("animate-slide");
+						}
+						//记录上一个左滑的对象
+						lastObject = currentObject;
+					} else if (diffX >= diffXDistance) {
+						if (currentObject == lastObject) {
+							//右滑→
+							$(currentObject).removeClass("animate-slide");
+							//清空上一个左滑的对象
+							lastObject = undefined;
+						}
+					}
+				});
+		}
+		var orientation = 0; //0 竖屏，1横屏
+		// document.body.addEventListener('touchmove', function (e) {
+		// 	e.preventDefault()
+		// }, {
+		// 	passive: false
+		// })
+
+		// //初始化一下就可以了
+		// var vConsole = new VConsole();
+
+		var btnMuted = document.querySelector("#btnMuted");
+		btnMuted && (function () {
+			var setHistory = function (left, top) {
+				try {
+					localStorage.setItem("muted-btn-loc", JSON.stringify({
+						left: left,
+						top: top
+					}));
+				} catch (ex) { }
+			};
+			var getHistory = function () {
+				try {
+					var value = localStorage.getItem("muted-btn-loc");
+					if (!value) return null;
+					value = JSON.parse(value);
+					if (!value) return null;
+					return value;
+				} catch (ex) {
+					return null
+				}
+			};
+			var fixLoc = function (loc) {
+				var rect = btnMuted.getBoundingClientRect();
+				rect = {
+					top: rect.top,
+					left: rect.left,
+					width: rect.width,
+					height: rect.height
+				}; //部分低版本浏览器,该属性为只读
+				if (loc) {
+					rect.left = loc.left;
+					rect.top = loc.top;
+				}
+				var minX = 0;
+				var minY = 0;
+				var docRect = document.documentElement.getBoundingClientRect();
+				var maxY = docRect.height - rect.height;
+				var maxX = docRect.width - rect.width;
+				var left = rect.left;
+				var top = rect.top;
+				left = Math.min(left, maxX);
+				left = Math.max(left, minX);
+				top = Math.min(top, maxY);
+				top = Math.max(top, minY);
+				if (loc || top !== rect.top || left !== rect.left) {
+					btnMuted.style.cssText += "left:" + left + "px;top:" + top + "px;";
+				}
+			}
+			window.addEventListener("resize", function () {
+				fixLoc();
+			});
+			var touchPoint = {
+				pageY: 0,
+				pageX: 0
+			};
+			var currentLoc = {
+				top: 0,
+				left: 0,
+				curTop: 0,
+				curLeft: 0
+			};
+			var toMove = false;
+			var touchmove = function (e) {
+				e.preventDefault();
+				var point = e.changedTouches[0];
+				var top = -touchPoint.pageY + point.pageY;
+				var left = -touchPoint.pageX + point.pageX;
+				if (toMove) {
+					top += currentLoc.top;
+					left += currentLoc.left;
+					currentLoc.curLeft = left;
+					currentLoc.curTop = top;
+					btnMuted.style.cssText += "left:" + left + "px;top:" + top + "px;";
+				} else {
+					if (Math.abs(top) >= 5 || Math.abs(left) >= 5) {
+						toMove = true;
+					}
+				}
+			};
+			var touchend = function () {
+				window.removeEventListener("touchmove", touchmove, {
+					passive: false
+				});
+				window.removeEventListener("touchend", touchend, {
+					passive: false
+				});
+
+				if (toMove) {
+					setHistory(currentLoc.curLeft, currentLoc.curTop);
+					fixLoc();
+				} else {
+					//按点击处理
+					var set = $('.control-right-img').attr("data-id")
+					if (set == '1') {
+						$('.control-right-img').attr({
+							"data-id": "2"
+						})
+						$(".leftmains").css({
+							"right": "0rem"
+						})
+					} else {
+						$('.control-right-img').attr({
+							"data-id": "1"
+						})
+
+						$(".leftmains").css({
+							"right": "-4rem"
+						})
+					}
+				}
+			}
+			btnMuted.addEventListener("touchstart", function (e) {
+				e.preventDefault();
+				toMove = false;
+				var point = e.changedTouches[0];
+				touchPoint.pageX = point.pageX;
+				touchPoint.pageY = point.pageY;
+				var rect = e.target.getBoundingClientRect();
+				currentLoc.top = rect.top;
+				currentLoc.left = rect.left;
+				window.addEventListener("touchmove", touchmove, {
+					passive: false
+				});
+				window.addEventListener("touchend", touchend, {
+					passive: false
+				});
+			}, {
+				passive: false
+			});
+			var history = getHistory();
+			if (history) {
+				fixLoc(history);
+			}
+			btnMuted.classList.remove("hide");
+		})();
+
+		$(".boximg").on("click", function () {
+			$(".mainbox").css({
+				"display": "none"
+			})
+		})
+		// 剪贴板
+		$(".sboxbu").on("click", function () {
+			$(".sbox").css({
+				"display": "none"
+			})
+		})
+		// 剪贴板
+		$(".uploadss").on("click", function () {
+			$(".sbox").css({
+				"display": "none"
+			})
+		})
+
+		$("#upload").on("click", function () {
+			wx.miniProgram.switchTab({
+				url: '/pages/home/home'
+			})
+		})
+
+		function selectText(x) {
+			if (document.selection) {
+				var range = document.body.createTextRange();
+				range.moveToElementText(x);
+				range.select();
+			} else if (window.getSelection) {
+				var selection = window.getSelection();
+				var range = document.createRange();
+				selection.removeAllRanges();
+				range.selectNodeContents(x);
+				selection.addRange(range);
+			}
+		}
+
+		function cp(x) {
+			$(".mainbox").css({
+				"display": "none"
+			})
+			$(".sbox").css({
+				"display": "block"
+			})
+			selectText(x);
+			document.execCommand("copy");
+
+		}
+	</script>
+	<script type="text/javascript" src="aac.js"></script>
+</body>
+
+</html>

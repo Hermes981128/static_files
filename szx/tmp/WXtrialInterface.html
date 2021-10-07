@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<!-- saved from url=(0198)https://client.androidscloud.com/h5/screenAndroid/WXtrialInterface.html?ip=172.170.9.103&domainName=gz.phone.androidscloud.com:4413/channel&appletPushAddress=gz.phone.androidscloud.com:4413/plugflow -->
+<html class="pixel-ratio-1"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<title></title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="x5-orientation" content="portrait">
+	<meta name="screen-orientation" content="portrait">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<!-- 删除苹果默认的工具栏和菜单栏 -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<!-- 设置苹果工具栏颜? -->
+	<meta name="format-detection" content="telphone=no, email=no">
+	<!-- 忽略页面中的数字识别为电话，忽略email识别 -->
+	<!-- 启用360浏览器的极速模?(webkit) -->
+	<meta name="renderer" content="webkit">
+	<!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑? -->
+	<meta name="HandheldFriendly" content="true">
+	<!-- 微软的老式浏览? -->
+	<meta name="MobileOptimized" content="320">
+	<!-- 不能旋转，问题出在这 -->
+	<!-- UC强制全屏 -->
+	<meta name="full-screen" content="yes">
+	<!-- QQ强制全屏 -->
+	<meta name="x5-fullscreen" content="true">
+	<!-- UC应用模式 -->
+	<meta name="browsermode" content="application">
+	<!-- QQ应用模式 -->
+	<meta name="x5-page-mode" content="app">
+	<!-- windows phone 点击无高? -->
+	<meta name="msapplication-tap-highlight" content="no">
+	<link rel="stylesheet" type="text/css" href="./WXtrialInterface_files/WXtrialInterface.css">
+	<link rel="stylesheet" href="./WXtrialInterface_files/weui.min.css">
+	<link rel="stylesheet" href="./WXtrialInterface_files/jquery-weui.min.css">
+<style type="text/css">#__vconsole{color:#000;font-size:13px;font-family:Helvetica Neue,Helvetica,Arial,sans-serif}#__vconsole .vc-max-height{max-height:19.23076923em}#__vconsole .vc-max-height-line{max-height:3.38461538em}#__vconsole .vc-min-height{min-height:3.07692308em}#__vconsole dd,#__vconsole dl,#__vconsole pre{margin:0}#__vconsole .vc-switch{display:block;position:fixed;right:.76923077em;bottom:.76923077em;color:#fff;background-color:#04be02;line-height:1;font-size:1.07692308em;padding:.61538462em 1.23076923em;z-index:10000;border-radius:.30769231em;box-shadow:0 0 .61538462em rgba(0,0,0,.4)}#__vconsole .vc-mask{top:0;background:transparent;z-index:10001;transition:background .3s;-webkit-tap-highlight-color:transparent;overflow-y:scroll}#__vconsole .vc-mask,#__vconsole .vc-panel{display:none;position:fixed;left:0;right:0;bottom:0}#__vconsole .vc-panel{min-height:85%;z-index:10002;background-color:#efeff4;-webkit-transition:-webkit-transform .3s;transition:-webkit-transform .3s;transition:transform .3s;transition:transform .3s,-webkit-transform .3s;-webkit-transform:translateY(100%);transform:translateY(100%)}#__vconsole .vc-tabbar{border-bottom:1px solid #d9d9d9;overflow-x:auto;height:3em;width:auto;white-space:nowrap}#__vconsole .vc-tabbar .vc-tab{display:inline-block;line-height:3em;padding:0 1.15384615em;border-right:1px solid #d9d9d9;text-decoration:none;color:#000;-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none}#__vconsole .vc-tabbar .vc-tab:active{background-color:rgba(0,0,0,.15)}#__vconsole .vc-tabbar .vc-tab.vc-actived{background-color:#fff}#__vconsole .vc-content{background-color:#fff;overflow-x:hidden;overflow-y:auto;position:absolute;top:3.07692308em;left:0;right:0;bottom:3.07692308em;-webkit-overflow-scrolling:touch}#__vconsole .vc-content.vc-has-topbar{top:5.46153846em}#__vconsole .vc-topbar{background-color:#fbf9fe;display:flex;display:-webkit-box;flex-direction:row;flex-wrap:wrap;-webkit-box-direction:row;-webkit-flex-wrap:wrap;width:100%}#__vconsole .vc-topbar .vc-toptab{display:none;flex:1;-webkit-box-flex:1;line-height:2.30769231em;padding:0 1.15384615em;border-bottom:1px solid #d9d9d9;text-decoration:none;text-align:center;color:#000;-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none}#__vconsole .vc-topbar .vc-toptab.vc-toggle{display:block}#__vconsole .vc-topbar .vc-toptab:active{background-color:rgba(0,0,0,.15)}#__vconsole .vc-topbar .vc-toptab.vc-actived{border-bottom:1px solid #3e82f7}#__vconsole .vc-logbox{display:none;position:relative;min-height:100%}#__vconsole .vc-logbox i{font-style:normal}#__vconsole .vc-logbox .vc-log{padding-bottom:3em;-webkit-tap-highlight-color:transparent}#__vconsole .vc-logbox .vc-log:empty:before{content:"Empty";color:#999;position:absolute;top:45%;left:0;right:0;bottom:0;font-size:1.15384615em;text-align:center}#__vconsole .vc-logbox .vc-item{margin:0;padding:.46153846em .61538462em;overflow:hidden;line-height:1.3;border-bottom:1px solid #eee;word-break:break-word}#__vconsole .vc-logbox .vc-item-info{color:#6a5acd}#__vconsole .vc-logbox .vc-item-debug{color:#daa520}#__vconsole .vc-logbox .vc-item-warn{color:orange;border-color:#ffb930;background-color:#fffacd}#__vconsole .vc-logbox .vc-item-error{color:#dc143c;border-color:#f4a0ab;background-color:#ffe4e1}#__vconsole .vc-logbox .vc-log.vc-log-partly .vc-item{display:none}#__vconsole .vc-logbox .vc-log.vc-log-partly-error .vc-item-error,#__vconsole .vc-logbox .vc-log.vc-log-partly-info .vc-item-info,#__vconsole .vc-logbox .vc-log.vc-log-partly-log .vc-item-log,#__vconsole .vc-logbox .vc-log.vc-log-partly-warn .vc-item-warn{display:block}#__vconsole .vc-logbox .vc-item .vc-item-content{margin-right:4.61538462em;display:block}#__vconsole .vc-logbox .vc-item .vc-item-meta{color:#888;float:right;width:4.61538462em;text-align:right}#__vconsole .vc-logbox .vc-item.vc-item-nometa .vc-item-content{margin-right:0}#__vconsole .vc-logbox .vc-item.vc-item-nometa .vc-item-meta{display:none}#__vconsole .vc-logbox .vc-item .vc-item-code{display:block;white-space:pre-wrap;overflow:auto;position:relative}#__vconsole .vc-logbox .vc-item .vc-item-code.vc-item-code-input,#__vconsole .vc-logbox .vc-item .vc-item-code.vc-item-code-output{padding-left:.92307692em}#__vconsole .vc-logbox .vc-item .vc-item-code.vc-item-code-input:before,#__vconsole .vc-logbox .vc-item .vc-item-code.vc-item-code-output:before{content:"\203A";position:absolute;top:-.23076923em;left:0;font-size:1.23076923em;color:#6a5acd}#__vconsole .vc-logbox .vc-item .vc-item-code.vc-item-code-output:before{content:"\2039"}#__vconsole .vc-logbox .vc-item .vc-fold{display:block;overflow:auto;-webkit-overflow-scrolling:touch}#__vconsole .vc-logbox .vc-item .vc-fold .vc-fold-outer{display:block;font-style:italic;padding-left:.76923077em;position:relative}#__vconsole .vc-logbox .vc-item .vc-fold .vc-fold-outer:active{background-color:#e6e6e6}#__vconsole .vc-logbox .vc-item .vc-fold .vc-fold-outer:before{content:"";position:absolute;top:.30769231em;left:.15384615em;width:0;height:0;border:.30769231em solid transparent;border-left-color:#000}#__vconsole .vc-logbox .vc-item .vc-fold .vc-fold-outer.vc-toggle:before{top:.46153846em;left:0;border-top-color:#000;border-left-color:transparent}#__vconsole .vc-logbox .vc-item .vc-fold .vc-fold-inner{display:none;margin-left:.76923077em}#__vconsole .vc-logbox .vc-item .vc-fold .vc-fold-inner.vc-toggle{display:block}#__vconsole .vc-logbox .vc-item .vc-fold .vc-fold-inner .vc-code-key{margin-left:.76923077em}#__vconsole .vc-logbox .vc-item .vc-fold .vc-fold-outer .vc-code-key{margin-left:0}#__vconsole .vc-logbox .vc-code-key{color:#905}#__vconsole .vc-logbox .vc-code-private-key{color:#d391b5}#__vconsole .vc-logbox .vc-code-function{color:#905;font-style:italic}#__vconsole .vc-logbox .vc-code-boolean,#__vconsole .vc-logbox .vc-code-number{color:#0086b3}#__vconsole .vc-logbox .vc-code-string{color:#183691}#__vconsole .vc-logbox .vc-code-null,#__vconsole .vc-logbox .vc-code-undefined{color:#666}#__vconsole .vc-logbox .vc-cmd{position:absolute;height:3.07692308em;left:0;right:0;bottom:0;border-top:1px solid #d9d9d9;display:block!important}#__vconsole .vc-logbox .vc-cmd .vc-cmd-input-wrap{display:block;height:2.15384615em;margin-right:3.07692308em;padding:.46153846em .61538462em}#__vconsole .vc-logbox .vc-cmd .vc-cmd-input{width:100%;border:none;resize:none;outline:none;padding:0;font-size:.92307692em}#__vconsole .vc-logbox .vc-cmd .vc-cmd-input::-webkit-input-placeholder{line-height:2.15384615em}#__vconsole .vc-logbox .vc-cmd .vc-cmd-btn{position:absolute;top:0;right:0;bottom:0;width:3.07692308em;border:none;background-color:#efeff4;outline:none;-webkit-touch-callout:none;font-size:1em}#__vconsole .vc-logbox .vc-cmd .vc-cmd-btn:active{background-color:rgba(0,0,0,.15)}#__vconsole .vc-logbox .vc-group .vc-group-preview{-webkit-touch-callout:none}#__vconsole .vc-logbox .vc-group .vc-group-preview:active{background-color:#e6e6e6}#__vconsole .vc-logbox .vc-group .vc-group-detail{display:none;padding:0 0 .76923077em 1.53846154em;border-bottom:1px solid #eee}#__vconsole .vc-logbox .vc-group.vc-actived .vc-group-detail{display:block;background-color:#fbf9fe}#__vconsole .vc-logbox .vc-group.vc-actived .vc-table-row{background-color:#fff}#__vconsole .vc-logbox .vc-group.vc-actived .vc-group-preview{background-color:#fbf9fe}#__vconsole .vc-logbox .vc-table .vc-table-row{display:flex;display:-webkit-flex;flex-direction:row;flex-wrap:wrap;-webkit-box-direction:row;-webkit-flex-wrap:wrap;overflow:hidden;border-bottom:1px solid #eee}#__vconsole .vc-logbox .vc-table .vc-table-row.vc-left-border{border-left:1px solid #eee}#__vconsole .vc-logbox .vc-table .vc-table-col{flex:1;-webkit-box-flex:1;padding:.23076923em .30769231em;border-left:1px solid #eee;overflow:auto;white-space:pre-wrap;word-break:break-word;-webkit-overflow-scrolling:touch}#__vconsole .vc-logbox .vc-table .vc-table-col:first-child{border:none}#__vconsole .vc-logbox .vc-table .vc-small .vc-table-col{padding:0 .30769231em;font-size:.92307692em}#__vconsole .vc-logbox .vc-table .vc-table-col-2{flex:2;-webkit-box-flex:2}#__vconsole .vc-logbox .vc-table .vc-table-col-3{flex:3;-webkit-box-flex:3}#__vconsole .vc-logbox .vc-table .vc-table-col-4{flex:4;-webkit-box-flex:4}#__vconsole .vc-logbox .vc-table .vc-table-col-5{flex:5;-webkit-box-flex:5}#__vconsole .vc-logbox .vc-table .vc-table-col-6{flex:6;-webkit-box-flex:6}#__vconsole .vc-logbox .vc-table .vc-table-row-error{border-color:#f4a0ab;background-color:#ffe4e1}#__vconsole .vc-logbox .vc-table .vc-table-row-error .vc-table-col{color:#dc143c;border-color:#f4a0ab}#__vconsole .vc-logbox .vc-table .vc-table-col-title{font-weight:700}#__vconsole .vc-logbox.vc-actived{display:block}#__vconsole .vc-toolbar{border-top:1px solid #d9d9d9;line-height:3em;position:absolute;left:0;right:0;bottom:0;display:flex;display:-webkit-box;flex-direction:row;-webkit-box-direction:row}#__vconsole .vc-toolbar .vc-tool{display:none;text-decoration:none;color:#000;width:50%;flex:1;-webkit-box-flex:1;text-align:center;position:relative;-webkit-touch-callout:none}#__vconsole .vc-toolbar .vc-tool.vc-global-tool,#__vconsole .vc-toolbar .vc-tool.vc-toggle{display:block}#__vconsole .vc-toolbar .vc-tool:active{background-color:rgba(0,0,0,.15)}#__vconsole .vc-toolbar .vc-tool:after{content:" ";position:absolute;top:.53846154em;bottom:.53846154em;right:0;border-left:1px solid #d9d9d9}#__vconsole .vc-toolbar .vc-tool-last:after{border:none}#__vconsole.vc-toggle .vc-switch{display:none}#__vconsole.vc-toggle .vc-mask{background:rgba(0,0,0,.6);display:block}#__vconsole.vc-toggle .vc-panel{-webkit-transform:translate(0);transform:translate(0)}</style><style type="text/css">.vcelm-node{color:#183691}.vcelm-k{color:#0086b3}.vcelm-v{color:#905}.vcelm-l{padding-left:8px;position:relative;word-wrap:break-word;line-height:1}.vcelm-l.vc-toggle>.vcelm-node{display:block}.vcelm-l .vcelm-node:active{background-color:rgba(0,0,0,.15)}.vcelm-l.vcelm-noc .vcelm-node:active{background-color:transparent}.vcelm-t{white-space:pre-wrap;word-wrap:break-word}.vcelm-l .vcelm-l{display:none}.vcelm-l.vc-toggle>.vcelm-l{margin-left:4px;display:block}.vcelm-l:before{content:"";display:block;position:absolute;top:6px;left:3px;width:0;height:0;border:3px solid transparent;border-left-color:#000}.vcelm-l.vc-toggle:before{display:block;top:6px;left:0;border-top-color:#000;border-left-color:transparent}.vcelm-l.vcelm-noc:before{display:none}</style></head>
+
+<body class="scroll h-player" style="overscroll-behavior: contain;" oncontextmenu="Back()">
+	<div class="container" id="player">
+		<div class="muted" id="btnMuted" style="left: 327.703px; top: 0px;">
+			<div class="control-right-img" data-id="2">
+				<img src="./WXtrialInterface_files/xuanfu_icon.png">
+			</div>
+		</div>
+		<div id="wine" style="width: 720px; height: 1230px; position: absolute;">
+			<video id="playerVideo" muted="muted" x5-video-orientation="landscape" playsinline="true" autoplay="true" webkit-playsinline="true" x5-playsinline="true" x5-video-player-type="h5" x5-video-player-fullscreen="false" style="pointer-events: none;object-fit: fill;width: 100%;height:100%" src="blob:https://client.androidscloud.com/f77eaafa-bfd1-493b-8a9d-34a08fdce78f"></video>
+			<div id="box"></div>
+			<audio preload="auto" autoplay="" controls="" poster="images/loader-thumb.jpg" id="audioPlayer" style="position: absolute;top: 0;width: 0;height: 0;"></audio>
+		</div>
+		<div class="leftmains" style="right: -4rem;">
+			<div class="PictureQualityMain">
+				<div class="PictureQuality " data-id="1803000">高清</div>
+				<div class="PictureQuality avit" data-id="1243000">标清</div>
+				<div class="PictureQuality" data-id="400000">极速</div>
+				<div class="PictureQuality" data-id="200">自动</div>
+			</div>
+			<div class="operation">
+				<div class="upload" id="showsuss" data-text="uploads" style="display: none;">
+					<img src="./WXtrialInterface_files/shangchuan_icon.png">
+					<div>上传</div>
+				</div>
+				<div class="upload" onclick="showShearPlate()" data-text="Shearplate">
+					<img src="./WXtrialInterface_files/jianqieban_icon.png">
+					<div>剪贴板</div>
+				</div>
+				<div class="upload" id="upload" data-text="Signout">
+					<img src="./WXtrialInterface_files/tuichu_icon.png">
+					<div>退出</div>
+				</div>
+			</div>
+		</div>
+		<div class="bottommains">
+			<div class="botmat1">
+				<div class="botmat1img" data-text="gengduo">
+					<img src="./WXtrialInterface_files/gengduo_icon.png">
+				</div>
+			</div>
+			<div class="botmat1">
+				<div class="botmat1img" data-text="home">
+					<img src="./WXtrialInterface_files/home_icon.png">
+				</div>
+			</div>
+			<div class="botmat1">
+				<div class="botmat1img" data-text="return">
+					<img src="./WXtrialInterface_files/fanhui_icon.png">
+				</div>
+			</div>
+		</div>
+		<div class="loading" style="width: 720px; height: 1230px; display: none;"></div>
+	</div>
+	<div class="mask">
+		<div class="box-shear-plate"></div>
+		<img class="close" onclick="handleClose()" src="./WXtrialInterface_files/guanbi_icon@2x.png" alt="">
+	</div>
+	<div class="weui-mask_transparent" style="display: none;"></div>
+	<div class="weui-toast weui_loading_toast weui-toast--visible" style="display: none;">
+		<div class="weui_loading"><i class="weui-loading weui-icon_toast"></i></div>
+		<p class="weui-toast_content">数据加载中</p>
+	</div>
+
+	
+	
+	<script type="text/javascript" src="./WXtrialInterface_files/jweixin-1.3.2.js.下载"></script>
+	<script type="text/javascript" src="./WXtrialInterface_files/jquery-1.11.0.min.js.下载"></script>
+	<script type="text/javascript" src="./WXtrialInterface_files/helper.js.下载"></script>
+	<script type="text/javascript" src="./WXtrialInterface_files/pcm-player.js.下载"></script>
+	<script type="text/javascript" src="./WXtrialInterface_files/vconsole.min.js.下载"></script>
+	<script src="./WXtrialInterface_files/jquery-weui.min.js.下载"></script>
+	<script type="text/javascript" src="./WXtrialInterface_files/WXdraw.js.下载"></script>
+	<script type="text/javascript" src="./WXtrialInterface_files/jmuxer.js.下载"></script>
+	<script>
+		var isAudioPlay = false;
+		$.alert({
+			title: '提示',
+			text: '开始使用云手机',
+			onOK: function () {
+				var video = document.getElementById("playerVideo");
+				video.play();
+				isAudioPlay = true;
+			}
+		});
+		var topwinHeight = window.screen.height - window.innerHeight + 30; //计算title top 头部  
+		$('#wine').css({
+			"width": window.screen.width,
+			"height": window.screen.height - topwinHeight - 20,
+			"position": "absolute"
+		});
+		$('.loading').css({
+			"width": window.screen.width,
+			"height": window.screen.height - topwinHeight - 20
+		});
+		var winese = document.createElement("wine");
+		wine.style.top = "-" + winese + 'px';
+
+		var requestCount = 0;
+		var isVisuable = true;
+		var isFeed = true;
+		var isDrag = false;
+		var isEnough = true;
+		var isFinish = false;
+
+		var delayTime = new Date().getTime();
+		var curTime = new Date().getTime();
+		var myVideo = document.getElementById("playerVideo");
+		Module = {};
+		Module.onRuntimeInitialized = function () {
+			isFinish = true;
+		}
+
+		var isWSS = true;
+		var parameters = GetRequest();
+		var ip = parameters["ip"];
+		var appletPushAddress = parameters["appletPushAddress"];
+		var socketURL = isWSS ? "wss://" + appletPushAddress + "?cardIp=" + ip : "ws://" + appletPushAddress + "?cardIp=" + ip;
+		// var socketURL = "ws://14.215.128.96:2004";
+
+		var jmuxer = new JMuxer({
+			node: 'playerVideo',
+			flushingTime: 15,
+			fps: 30,
+			mode: 'video',
+			debug: false
+		});
+
+		window.onload = function () {
+			curTime = new Date().getTime();
+
+			var myPlay = document.getElementById("wine");
+
+			myPlay.onkeydown = function (event) {
+				ExexuteKeyDown(e.keyCode);
+			}
+		}
+		var ws, errorTime = 0;
+		doConnect();
+		// 节流
+		// 设置一个标志
+		function throttle(fn, delay) {
+			let flag = true;
+			errorTime += delay;
+			return () => {
+				if (!flag) return;
+				flag = false;
+				timer = setTimeout(() => {
+					fn();
+					flag = true;
+				}, delay);
+			};
+		}
+		function doConnect() {
+			ws = new WebSocket(socketURL);
+			ws.binaryType = 'arraybuffer';
+
+			ws.onclose = function (e) {
+				ws.close();
+				throttle(doConnect, 100);
+				if (errorTime > 1000) {
+					wx.miniProgram.switchTab({
+						url: '/pages/home/home'
+					})
+				}
+			}
+
+			ws.addEventListener('open', function (event) {
+				ws.send(ConfigChannel("RK3923C1201900139"));
+				var checkBuffer = GetScreenState();
+				ws.send(checkBuffer);
+			});
+
+			ws.addEventListener('error', function (event) {
+				ws.close();
+				throttle(doConnect, 100);
+				if (errorTime > 1000) {
+					wx.miniProgram.switchTab({
+						url: '/pages/home/home'
+					})
+				}
+			});
+			ws.addEventListener('message', function (event) {
+				var data = ParseProto(event.data); //JAVA服务器转发
+				ws.send('ping');
+				if (isAudioPlay) {
+					$('.weui-mask_transparent').hide();
+					$('.weui-toast').hide();
+					$('.loading').hide();
+				}
+				var input = new Uint8Array(event.data);
+				if (data.audio != null && isAudioPlay) { //喂音频
+					if (input[0] == 0xff) {
+						if (isFinish) {
+							decodeAAC(input);
+						}
+					}
+				}
+
+				if (data.video != null) { //喂视频
+					if (isFeed) {
+						jmuxer.feed(data);
+					}
+				}
+			});
+		}
+
+		document.addEventListener("visibilitychange", function () {
+			if (document.visibilityState == "visible") {
+				var buffer = RequestIFrame();
+				ws.send(buffer);
+				isVisuable = true;
+			} else {
+				isVisuable = false;
+				isFeed = false;
+				myVideo.pause();
+			}
+		});
+
+		myVideo.addEventListener('pause', function () {
+			isFeed = false;
+		});
+
+		var decodeCount = 1;
+		var player = new PCMPlayer({
+			encoding: '16bitInt',
+			channels: 2,
+			sampleRate: 44100,
+			flushingTime: 22,
+			debug: false
+		});
+
+		function handleClose() {
+			document.body.addEventListener('touchmove', function (e) {
+				e.preventDefault()
+			}, {
+				passive: false
+			})
+			$('.mask').hide();
+		}
+
+		function decodeAAC(data) {
+			var retPtr = Module._malloc(4 * 5 * 1024); // 接收的数据
+			var inputPtr = Module._malloc(4 * data.length); // 输入数据
+
+			for (var i = 0; i < data.length; i++) {
+				Module.HEAPU8[(inputPtr) + i] = data[i]; //转换为堆数据
+			}
+
+			var pcmLen = Module._feedData(retPtr, inputPtr, data.length);
+
+			if (pcmLen >= 0) {
+				var pcmData = new Uint8Array(pcmLen);
+				for (var i = 0; i < pcmLen; i++) {
+					pcmData[i] = Module.HEAPU8[(retPtr) + i]
+				}
+
+				player.feed(pcmData);
+			}
+
+			decodeCount++;
+			Module._free(inputPtr);
+			Module._free(retPtr);
+		}
+
+		//解协议
+		function ParseProto(data) {
+			var input = new Uint8Array(data),
+				duration,
+				video,
+				audio;
+			if (input[0] == 0 && input[1] == 0 && input[2] == 0 && input[3] == 1) {
+				video = input;
+				duration = 24;
+				var nalType = input[4] & 0x1f;
+
+				if (!isFeed) {
+					if (nalType == 0x05 && isVisuable) {
+						isFeed = true;
+					}
+				}
+			} else if (input[0] == 0xff) {
+				if (!isEnough) {
+					requestCount++;
+				}
+				audio = input;
+
+				if (new Date().getTime() - curTime > 100) {
+					delayTime = new Date().getTime();
+				}
+				curTime = new Date().getTime();
+				duration = 24;
+			} else if (input[0] == 0x68) {
+				if (input[23] == 0x05) { //横竖屏标识
+					var state = CheckScreenDirection(input.slice(24, 24 + 8));
+
+					if (state == 1) {
+						console.log("安卓卡此时竖屏");
+						//竖屏处理
+						resolving = 1;
+					} else {
+						console.log("安卓卡此时横屏");
+						//横屏处理
+						resolving = 0;
+					}
+				}
+				if (input[23] == 0x0b) {
+					console.log("多端登陆");
+				}
+			}
+
+			return {
+				audio: audio,
+				video: video,
+				duration: duration
+			};
+		}
+
+		function GetRequest() {
+			var url = location.search; // 获取url中"?"符后的字串
+			var obj = new Object();
+			if (url.indexOf("?") != -1) {
+				var str = url.substr(1);
+				strs = str.split("&");
+				for (var i = 0; i < strs.length; i++) {
+					obj[strs[i].split("=")[0]] = (strs[i].split("=")[1]);
+				}
+			}
+			return obj;
+		}
+
+		function Back() {
+			ExexuteKeyDown(4);
+			window.event.returnValue = false;
+			return false;
+		}
+
+		var url = window.location.href;
+		url = url.split('/');
+		var baseUrl = url[0] + '//' + url[2];
+		// var baseUrl = 'http://per.cs.se.androidscloud.com';
+		var form = {};
+		$.ajax({
+			url: baseUrl + "/api/user/v1/config/download/isShow",
+			data: {},
+			type: 'get',
+			dataType: 'json',
+			success: function (data) {
+				if (data.data) {
+					$("#showsuss").show()
+				} else {
+					$("#showsuss").hide()
+				}
+			}
+		})
+
+		form.clientType = parameters['clientType'];
+		form.diskName = parameters['diskName'];
+		form.id = parameters['id'];
+		form.userCardId = parameters['userCardId'];
+
+		if (form.clientType == 1) {
+			form.cardIp = parameters['cardIp'];
+			form.port = parameters['port'];
+			form.sn = parameters['sn'];
+			form.demoTime = parameters['demoTime'];
+			form.id = parameters['id'];
+		} else if (form.clientType == 2) { //分享屏幕
+			$(".leftmains").css({
+				"right": "-4rem"
+			})
+			$('.leftmains').hide()
+			$('.bottommains').hide()
+			$('#btnMuted').hide()
+
+			form.id = parameters['id'];
+			form.ip = parameters['ip'];
+			form.userCardId = parameters['userCardId'];
+		}
+		function array_unique(arr) {
+			return arr.filter(function (e, i) {
+				return arr.indexOf(e) === i;
+			})
+		}
+		var cutList = [];
+		function showShearPlate() {
+			$('.box-shear-plate').empty();
+			$.ajax({
+				url: baseUrl + "/api/user/v1/shear/content",
+				data: {},
+				headers: {
+					'Authorization': form.id  //id
+				},
+				type: 'get',
+				dataType: 'json',
+				success: function (res) {
+					if (res.status === 0) {
+						if (res.data.length) {
+							cutList = array_unique(res.data)
+							var str = '<div class="title">剪贴板<div onclick="handleClear()" class="btn-clear">清空</div></div><div class="slide-wrapper-content">'
+							cutList.forEach(function (item) {
+								str += "<div class='slide-wrapper'><div class='slide-scroll animate-slide-start'><div class='slide-content'><div onclick='handleCopy(\"" + item.content + "\")'>" + item.content + "</div></div><div class='slide-content-button'><button onclick='handleDelete(" + item.id + ")'>删除</button></div></div></div>"
+							})
+							str += '</div>'
+							$('.box-shear-plate').append(str);
+						} else {
+							$('.box-shear-plate').append('<img class="empty" src="img/jianqieban_pic@2x.png" alt="" /><div class="empty-txt">剪贴板为空</div>')
+
+						}
+						$('.mask').show();
+						initSlider();
+					} else {
+						$('.box-shear-plate').append('<img class="empty" src="img/jianqieban_pic@2x.png" alt="" /><div class="empty-txt">剪贴板为空</div>')
+						$('.mask').show();
+					}
+				}
+			})
+		}
+		// 清空剪贴板
+		function handleClear() {
+			var ids = '';
+			cutList.forEach(function (item) {
+				ids += 'ids=' + item.id + '&'
+			});
+			ids = ids.substring(0, ids.lastIndexOf('&'));
+			$.confirm("确定清空剪贴板？", function () {
+				$.ajax({
+					url: baseUrl + "/api/user/v1/shear/content?" + ids,
+					headers: {
+						'Authorization': form.id  //id
+					},
+					type: 'DELETE',
+					dataType: 'json',
+					success: function (res) {
+						if (res.status === 0) {
+							showShearPlate();
+						} else {
+							$.toast(res.msg, "text");
+						}
+					}
+				})
+			});
+		}
+		function handleCopy(content) {
+			$.ajax({
+				url: baseUrl + "/api/wsi/v1/config/cut",
+				data: JSON.stringify({
+					str: content,
+					userCardId: form.userCardId
+				}),
+				headers: {
+					'Authorization': form.id  //id
+				},
+				contentType: "application/json;charset=UTF-8",
+				type: 'post',
+				dataType: 'json',
+				success: function (res) {
+					if (res.status === 0) {
+						$.toast('复制成功', "text");
+					} else {
+						$.toast(res.msg, "text");
+					}
+				}
+			})
+		}
+		// 删除剪贴板
+		function handleDelete(id) {
+			$.ajax({
+				url: baseUrl + "/api/user/v1/shear/content?ids=" + id,
+				headers: {
+					'Authorization': form.id  //id
+				},
+				type: 'DELETE',
+				dataType: 'json',
+				success: function (res) {
+					if (res.status === 0) {
+						showShearPlate();
+					} else {
+						$.toast(res.msg, "text");
+					}
+				}
+			})
+		}
+		function initSlider() {
+			//手指滑动多少距离就认为是滑成功
+			//这个值不能太大，否则影响斜着滑动时，垂直滑动的流畅性，也不能太小，太灵敏也不好
+			var diffXDistance = 50;
+			//当前滑动的对象
+			var currentObject;
+			//上一次滑动的对象
+			var lastObject;
+			//是否可以左右滑动，在上下滑的时候禁止左右滑
+			var canSlide = true;
+			//用于记录按下的点
+			var startPoint;
+
+			$(".slide-content").css({
+				width: $(".slide-wrapper").width()
+			});
+			document.body.removeEventListener('touchmove', function (e) {
+				e.preventDefault()
+			}, {
+				passive: false
+			})
+			$(".slide-scroll").css({
+				width: $(".slide-wrapper").width() + $(".slide-content-button").width()
+			})
+				.on('touchstart', function (e) {
+					currentObject = this;
+
+					startPoint = {
+						x: e.originalEvent.changedTouches[0].pageX,
+						y: e.originalEvent.changedTouches[0].pageY
+					};
+				})
+				.on('touchmove', function (e) {
+					//如果是左右滑动，就禁止上下的滑动
+					//如果是上下的滑动，就禁止左右滑动
+					if (Math.abs(e.originalEvent.changedTouches[0].pageX - startPoint.x) > Math.abs(e.originalEvent.changedTouches[0].pageY - startPoint.y)) {
+						event.preventDefault();
+					} else {
+						canSlide = false;
+					}
+				})
+				.on('touchend', function (e) {
+					//如果是上下滑动，这里就直接返回了
+					if (!canSlide) {
+						canSlide = true;
+						return true;
+					}
+
+					//点击除当前左滑对象之外的任意其他位置
+					if (lastObject && currentObject != lastObject) {
+						//右滑→
+						$(lastObject).removeClass("animate-slide");
+
+						//清空上一个左滑的对象
+						lastObject = undefined;
+					}
+					var diffX = e.originalEvent.changedTouches[0].pageX - startPoint.x;
+					if (diffX < -diffXDistance) {
+						//左滑←
+						$(currentObject).addClass("animate-slide");
+						if (lastObject && lastObject != currentObject) {
+							//右滑→
+							$(lastObject).removeClass("animate-slide");
+						}
+						//记录上一个左滑的对象
+						lastObject = currentObject;
+					} else if (diffX >= diffXDistance) {
+						if (currentObject == lastObject) {
+							//右滑→
+							$(currentObject).removeClass("animate-slide");
+							//清空上一个左滑的对象
+							lastObject = undefined;
+						}
+					}
+				});
+		}
+		var orientation = 0; //0 竖屏，1横屏
+		// document.body.addEventListener('touchmove', function (e) {
+		// 	e.preventDefault()
+		// }, {
+		// 	passive: false
+		// })
+
+		// //初始化一下就可以了
+		// var vConsole = new VConsole();
+
+		var btnMuted = document.querySelector("#btnMuted");
+		btnMuted && (function () {
+			var setHistory = function (left, top) {
+				try {
+					localStorage.setItem("muted-btn-loc", JSON.stringify({
+						left: left,
+						top: top
+					}));
+				} catch (ex) { }
+			};
+			var getHistory = function () {
+				try {
+					var value = localStorage.getItem("muted-btn-loc");
+					if (!value) return null;
+					value = JSON.parse(value);
+					if (!value) return null;
+					return value;
+				} catch (ex) {
+					return null
+				}
+			};
+			var fixLoc = function (loc) {
+				var rect = btnMuted.getBoundingClientRect();
+				rect = {
+					top: rect.top,
+					left: rect.left,
+					width: rect.width,
+					height: rect.height
+				}; //部分低版本浏览器,该属性为只读
+				if (loc) {
+					rect.left = loc.left;
+					rect.top = loc.top;
+				}
+				var minX = 0;
+				var minY = 0;
+				var docRect = document.documentElement.getBoundingClientRect();
+				var maxY = docRect.height - rect.height;
+				var maxX = docRect.width - rect.width;
+				var left = rect.left;
+				var top = rect.top;
+				left = Math.min(left, maxX);
+				left = Math.max(left, minX);
+				top = Math.min(top, maxY);
+				top = Math.max(top, minY);
+				if (loc || top !== rect.top || left !== rect.left) {
+					btnMuted.style.cssText += "left:" + left + "px;top:" + top + "px;";
+				}
+			}
+			window.addEventListener("resize", function () {
+				fixLoc();
+			});
+			var touchPoint = {
+				pageY: 0,
+				pageX: 0
+			};
+			var currentLoc = {
+				top: 0,
+				left: 0,
+				curTop: 0,
+				curLeft: 0
+			};
+			var toMove = false;
+			var touchmove = function (e) {
+				e.preventDefault();
+				var point = e.changedTouches[0];
+				var top = -touchPoint.pageY + point.pageY;
+				var left = -touchPoint.pageX + point.pageX;
+				if (toMove) {
+					top += currentLoc.top;
+					left += currentLoc.left;
+					currentLoc.curLeft = left;
+					currentLoc.curTop = top;
+					btnMuted.style.cssText += "left:" + left + "px;top:" + top + "px;";
+				} else {
+					if (Math.abs(top) >= 5 || Math.abs(left) >= 5) {
+						toMove = true;
+					}
+				}
+			};
+			var touchend = function () {
+				window.removeEventListener("touchmove", touchmove, {
+					passive: false
+				});
+				window.removeEventListener("touchend", touchend, {
+					passive: false
+				});
+
+				if (toMove) {
+					setHistory(currentLoc.curLeft, currentLoc.curTop);
+					fixLoc();
+				} else {
+					//按点击处理
+					var set = $('.control-right-img').attr("data-id")
+					if (set == '1') {
+						$('.control-right-img').attr({
+							"data-id": "2"
+						})
+						$(".leftmains").css({
+							"right": "0rem"
+						})
+					} else {
+						$('.control-right-img').attr({
+							"data-id": "1"
+						})
+
+						$(".leftmains").css({
+							"right": "-4rem"
+						})
+					}
+				}
+			}
+			btnMuted.addEventListener("touchstart", function (e) {
+				e.preventDefault();
+				toMove = false;
+				var point = e.changedTouches[0];
+				touchPoint.pageX = point.pageX;
+				touchPoint.pageY = point.pageY;
+				var rect = e.target.getBoundingClientRect();
+				currentLoc.top = rect.top;
+				currentLoc.left = rect.left;
+				window.addEventListener("touchmove", touchmove, {
+					passive: false
+				});
+				window.addEventListener("touchend", touchend, {
+					passive: false
+				});
+			}, {
+				passive: false
+			});
+			var history = getHistory();
+			if (history) {
+				fixLoc(history);
+			}
+			btnMuted.classList.remove("hide");
+		})();
+
+		$(".boximg").on("click", function () {
+			$(".mainbox").css({
+				"display": "none"
+			})
+		})
+		// 剪贴板
+		$(".sboxbu").on("click", function () {
+			$(".sbox").css({
+				"display": "none"
+			})
+		})
+		// 剪贴板
+		$(".uploadss").on("click", function () {
+			$(".sbox").css({
+				"display": "none"
+			})
+		})
+
+		$("#upload").on("click", function () {
+			wx.miniProgram.switchTab({
+				url: '/pages/home/home'
+			})
+		})
+
+		function selectText(x) {
+			if (document.selection) {
+				var range = document.body.createTextRange();
+				range.moveToElementText(x);
+				range.select();
+			} else if (window.getSelection) {
+				var selection = window.getSelection();
+				var range = document.createRange();
+				selection.removeAllRanges();
+				range.selectNodeContents(x);
+				selection.addRange(range);
+			}
+		}
+
+		function cp(x) {
+			$(".mainbox").css({
+				"display": "none"
+			})
+			$(".sbox").css({
+				"display": "block"
+			})
+			selectText(x);
+			document.execCommand("copy");
+
+		}
+	</script>
+	<script type="text/javascript" src="./WXtrialInterface_files/aac.js.下载"></script>
+
+
+</body><div id="edge-translate-notifier-container" class="edge-translate-notifier-center"></div></html>
